@@ -1,5 +1,7 @@
 # udemy-crawler
 
+[![Build Status](https://travis-ci.org/petehouston/udemy-crawler.svg?branch=master)](https://travis-ci.org/petehouston/udemy-crawler)
+
 Crawling Udemy course info and save into JSON format.
 
 # Installation
