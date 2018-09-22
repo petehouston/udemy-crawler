@@ -6,8 +6,6 @@ var usage = function () {
     return 'Usage:\n' +
            '    $ udemy-crawler [UDEMY_COURSE_URL]\n' +
            '\n' +
-           'Note: url must start with https://www.udemy.com/\n' +
-           '\n' +
            'Example:\n' +
            '    $ udemy-crawler https://www.udemy.com/successful-life/\n';
 }
@@ -27,12 +25,10 @@ var crawler = new UdemyCrawler({
     }
 });
 
-console.log('Parsing Url: ' + cli_input[0]);
-
 crawler.execute(cli_input[0], function (err, course) {
     
     if(err) {        
-        return console.error(err);
+        return console.error(err.message);
     }
 
     console.log(JSON.stringify(course, null, 4));

@@ -1,5 +1,6 @@
 import cheerio from 'cheerio';
 import request from 'sync-request';
+import normalizeUrl from 'normalize-url';
 
 class UdemyCrawler {
 
@@ -24,13 +25,32 @@ class UdemyCrawler {
 
 
         if(!url) {
-            return _cb('[ERROR] "url" parameter not defined!');
+            return _cb(new Error('"url" parameter not defined!'));
+        }                
 
-        }        
+        if(url.startsWith('udemy.com')) {
+            url = 'www.' + url;
+        }
+
+        let requestUrl = normalizeUrl(url, {
+            forceHttps: true,
+            stripWWW: false,
+            removeTrailingSlash: true
+        });
+
+        requestUrl += '/';
+
+        if(!requestUrl.startsWith('https://www.udemy.com')) {
+            return _cb(new Error('Invalid udemy.com url'));
+        }
+
+        if(requestUrl === 'https://www.udemy.com/') {
+            return _cb(new Error('Must point to udemy.com/course-path'));
+        }
 
         let Course = {};
 
-        let resLandingPage = request('GET', url, {
+        let resLandingPage = request('GET', requestUrl, {
             headers: {
                 'User-Agent': this.config.headers['User-Agent']
             }

@@ -47,6 +47,7 @@
   "homepage": "https://github.com/petehouston/udemy-crawler#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "normalize-url": "^3.3.0",
     "npm": "^6.4.1",
     "sync-request": "^6.0.0"
   },

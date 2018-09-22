@@ -7,8 +7,8 @@ const should = chai.should();
 
 describe('Crawler:', () => {
 
-    const SUCCESS_URL = 'https://www.udemy.com/success-life/';
-    const FAILURE_URL = 'https://www.udemy.com/not-existed-course';
+    const SUCCESS_URL = 'udemy.com/success-life';
+    const FAILURE_URL = 'https://www.udemy.com/not-existed-course';    
     let ExpectCourse;
 
     let expect = chai.expect;
@@ -41,7 +41,7 @@ describe('Crawler:', () => {
         crawler = new UdemyCrawler();
     });
 
-    it('should query correct Udemy course value', (done) => {       
+    it('should query correct Udemy course info', (done) => {       
 
         crawler.execute(SUCCESS_URL, (err, course) => {
 
@@ -58,15 +58,40 @@ describe('Crawler:', () => {
         });
     });
 
-    it('should pass Error on non-existing Udemy course', (done) => {
+    it('should return Error on non-existing Udemy course', (done) => {
         crawler.execute(FAILURE_URL, (err, course) => {
 
             expect(err).to.not.be.null;
             expect(err).to.be.an.instanceof(Error);
             
-            err.message.should.equal('Udemy page response with status 403');
+            err.message.should.contains('Udemy page response with status');
 
             done();
         });
     });
+
+    it('should return Error if not querying from udemy.com', (done) => {
+        crawler.execute('abc.com', (err, course) => {
+            
+            expect(err).to.not.be.null;
+            expect(err).to.be.an.instanceof(Error);
+           
+            err.message.should.contains('Invalid udemy.com');
+
+            done();
+        });
+    });
+
+    it('should return Error if querying from udemy home page', (done) => {
+        crawler.execute('udemy.com', (err, course) => {
+
+            expect(err).to.not.be.null;
+            expect(err).to.be.an.instanceof(Error);
+           
+            err.message.should.contains('point to udemy.com/course-path');
+
+            done();
+        });
+    });
+
 });
