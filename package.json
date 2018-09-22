@@ -14,7 +14,7 @@
     "test:cover": "npm run build && cross-env NODE_ENV=test nyc mocha --require babel-core/register",
     "cover": "cross-env NODE_ENV=test nyc report --reporter=text",
     "watch": "rollup -c -w",
-    "prepublish": "BUILD=production npm test"
+    "prepublish": "npm test"
   },
   "nyc": {
     "sourceMap": false,
