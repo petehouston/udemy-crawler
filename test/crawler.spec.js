@@ -18,6 +18,7 @@ describe('Crawler:', () => {
     before(() => {
         ExpectCourse = {
             id       : '1837672',
+            url      : 'https://www.udemy.com/success-life/',
             title    : 'Become Successful. Personal Development - Complete Blueprint',
             headline : 'How to be successful: Personal success, Mindset, Productivity, Surrounding, Life, Habits, Success & achievement',
             image    : 'https://udemy-images.udemy.com/course/750x422/1837672_4c92_4.jpg',

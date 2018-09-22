@@ -53,7 +53,9 @@ class UdemyCrawler {
             }
         }
 
-        let Course = {};
+        let Course = {
+            url: requestUrl
+        };
 
         // coupon
         Course.couponCode = objUrl.searchParams.get('couponCode') || '';        
