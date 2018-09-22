@@ -6,8 +6,10 @@ var usage = function () {
     return 'Usage:\n' +
            '    $ udemy-crawler [UDEMY_COURSE_URL]\n' +
            '\n' +
+           'Note: url must start with https://www.udemy.com/\n' +
+           '\n' +
            'Example:\n' +
-           '    $ udemy-crawler https://udemy.com/successful-life\n';
+           '    $ udemy-crawler https://www.udemy.com/successful-life/\n';
 }
 
 var cli_input = process.argv.slice(2);
