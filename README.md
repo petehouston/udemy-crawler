@@ -20,13 +20,13 @@ $ npm i udemy-crawler
 
 ## Command-line
 
-```
+```bash
 $ udemy-crawler [URL]
 ```
 
 Example and sample output
 
-```
+```bash
 $ udemy-crawler https://www.udemy.com/success-life/
 
 Parsing Url: https://www.udemy.com/success-life/
@@ -58,13 +58,13 @@ resourceful for everybody, keeping this fact in mind.",
 
 ## API
 
-```
+```js
 import UdemyCrawler from 'udemy-crawler';
 
 const crawler = new UdemyCrawler();
 ```
 
-### Method: `execute(url[, callback])
+### Method: `execute(url[, callback])`
 
 #### Arguments
 
@@ -76,7 +76,7 @@ const crawler = new UdemyCrawler();
 
 **course: Object** format:
 
-```
+```json
 {
     "id": String,
     "title": String,
