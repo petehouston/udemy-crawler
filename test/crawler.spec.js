@@ -2,7 +2,7 @@
 import chai from 'chai';
 import UdemyCrawler from '../src/crawler.es';
 
-const should = chai.should();
+chai.should();
 
 
 describe('Crawler:', () => {
@@ -34,6 +34,10 @@ describe('Crawler:', () => {
                 "Universe has a purpose for everybody. The one reading you, yes you are attracted here for a purpose. So yes, anybody reading this can take this course. It is developed that simple to be resourceful for everybody, keeping this fact in mind.",
                 "Any student who wants to learn how to be more successful in life"
             ],
+
+            couponCode : "",
+            price      : 179.99,
+            discount   : 0
         };
     });
 
@@ -53,13 +57,18 @@ describe('Crawler:', () => {
             
             expect(course.audiences).to.have.members(ExpectCourse.audiences);
             expect(course.topics).to.have.members(ExpectCourse.topics);
+
+            course.couponCode.should.equal(ExpectCourse.couponCode);
+            course.price.should.equal(ExpectCourse.price);
+            course.discount.should.equal(ExpectCourse.discount);
+
             
             done();
         });
     });
 
     it('should return Error on non-existing Udemy course', (done) => {
-        crawler.execute(FAILURE_URL, (err, course) => {
+        crawler.execute(FAILURE_URL, (err) => {
 
             expect(err).to.not.be.null;
             expect(err).to.be.an.instanceof(Error);
@@ -71,7 +80,7 @@ describe('Crawler:', () => {
     });
 
     it('should return Error if not querying from udemy.com', (done) => {
-        crawler.execute('abc.com', (err, course) => {
+        crawler.execute('abc.com', (err) => {
             
             expect(err).to.not.be.null;
             expect(err).to.be.an.instanceof(Error);
@@ -83,7 +92,7 @@ describe('Crawler:', () => {
     });
 
     it('should return Error if querying from udemy home page', (done) => {
-        crawler.execute('udemy.com', (err, course) => {
+        crawler.execute('udemy.com', (err) => {
 
             expect(err).to.not.be.null;
             expect(err).to.be.an.instanceof(Error);

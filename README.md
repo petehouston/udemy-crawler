@@ -52,7 +52,10 @@ resourceful for everybody, keeping this fact in mind.",
     "topics": [
         "Personal Development",
         "Personal Transformation"
-    ]
+    ],
+    "couponCode": "",
+    "price": 179.99,
+    "discount": 0
 }
 ```
 
@@ -84,11 +87,19 @@ const crawler = new UdemyCrawler();
     "image": String, // the 750x422 size
     "description": String, // the HTML format
     "audiences": String Array,
-    "topics": String Array
+    "topics": String Array,
+    "couponCode": String, // default to ""
+    "price": Number, // floating point number
+    "discount": Number, // default 0. Max value is 100.
 }
 ```
+
+**Note**:
+
+- `discount = 0` and `price = 0`: this is **FREE COURSE**.
+- `discount = 100`: this is **100% OFF** with `couponCode` value set.
 
 
 # License
 
-[MIT](LICENSE.md) @ by [Pete Houston](https://petehouston.com).
+[MIT](LICENSE.md) @ 2018 by [Pete Houston](https://petehouston.com).

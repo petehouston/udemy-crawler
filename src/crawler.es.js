@@ -1,6 +1,7 @@
 import cheerio from 'cheerio';
 import request from 'sync-request';
 import normalizeUrl from 'normalize-url';
+import { URL } from 'url';
 
 class UdemyCrawler {
 
@@ -28,34 +29,37 @@ class UdemyCrawler {
             return _cb(new Error('"url" parameter not defined!'));
         }                
 
-        if(url.startsWith('udemy.com')) {
-            url = 'www.' + url;
+        let objUrl = new URL(normalizeUrl(url));
+
+        if(objUrl.hostname !== 'udemy.com' && objUrl.hostname !== 'www.udemy.com') {
+            return _cb(new Error('Invalid udemy.com course url'));
         }
 
-        let requestUrl = normalizeUrl(url, {
-            forceHttps: true,
-            stripWWW: false,
-            removeTrailingSlash: true
-        });
-
-        requestUrl += '/';
-
-        if(!requestUrl.startsWith('https://www.udemy.com')) {
-            return _cb(new Error('Invalid udemy.com url'));
-        }
-
-        if(requestUrl === 'https://www.udemy.com/') {
+        if(objUrl.pathname == null || objUrl.pathname === '/') {
             return _cb(new Error('Must point to udemy.com/course-path'));
+        }
+        
+        let requestUrl = 'https://www.udemy.com' + objUrl.pathname;
+
+        if(objUrl.search) {
+            requestUrl += objUrl.search;
+        } else {
+            if(!requestUrl.endsWith('/')) {
+                requestUrl += '/';
+            }
         }
 
         let Course = {};
+
+        // coupon
+        Course.couponCode = objUrl.searchParams.get('couponCode') || '';        
 
         let resLandingPage = request('GET', requestUrl, {
             headers: {
                 'User-Agent': this.config.headers['User-Agent']
             }
         });
-
+        
         if(resLandingPage.statusCode !== 200) {
             return _cb(new Error('Udemy page response with status ' + resLandingPage.statusCode));
         }
@@ -69,13 +73,17 @@ class UdemyCrawler {
         let metaJson = JSON.parse($('#schema_markup script').html());
         Course.image = metaJson[0].image;
     
+        
+
         // query API        
-        let resApi = request('GET', this._getApiUrl(Course.id, ['topic_menu', 'description']), {
+        let apiUrl = this._getApiUrl(Course.id, ['topic_menu', 'description', 'purchase']) + '&couponCode=' + Course.couponCode;
+        let resApi = request('GET', apiUrl, {
             headers: {
                 'User-Agent': this.config.headers['User-Agent'],
                 'Content-Type': 'application/json'
             }
         });
+
 
         if(resApi.statusCode !== 200) {
             return _cb(new Error('Udemy API page response with status ' + resApi.statusCode));
@@ -87,6 +95,14 @@ class UdemyCrawler {
         Course.description = jsonData.description.description;
         Course.audiences = jsonData.description.target_audiences;
         Course.topics = jsonData.topic_menu.menu_data.map(m => m.title || m.display_name);
+
+        // price, discount
+        Course.price = jsonData.purchase.list_price.amount;        
+        if(!!jsonData.purchase.discount && jsonData.purchase.discount.discount_percent === 100) {
+            Course.discount = 100;
+        } else {
+            Course.discount = 0;
+        }
 
         return _cb(null, Course);  
   
