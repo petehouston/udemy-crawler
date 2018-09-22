@@ -5,7 +5,7 @@ class UdemyCrawler {
 
     constructor(config) {
         this.config = config || {
-            http: {
+            headers: {
                 'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
                 'Accept-Encoding': 'gzip, deflate, br',
@@ -32,7 +32,7 @@ class UdemyCrawler {
 
         let resLandingPage = request('GET', url, {
             headers: {
-                'User-Agent': this.config.http['User-Agent']
+                'User-Agent': this.config.headers['User-Agent']
             }
         });
 
@@ -52,7 +52,7 @@ class UdemyCrawler {
         // query API        
         let resApi = request('GET', this._getApiUrl(Course.id, ['topic_menu', 'description']), {
             headers: {
-                'User-Agent': this.config.http['User-Agent'],
+                'User-Agent': this.config.headers['User-Agent'],
                 'Content-Type': 'application/json'
             }
         });
