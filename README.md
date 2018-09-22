@@ -91,4 +91,4 @@ const crawler = new UdemyCrawler();
 
 # License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE.md) @ by [Pete Houston](https://petehouston.com).
