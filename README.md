@@ -16,6 +16,21 @@ or if you want to import in a project.
 $ npm i udemy-crawler
 ```
 
+## via Docker
+
+You can make a Docker build for the udemy crawler CLI.
+
+```
+$ docker build -t udemy-crawler .
+$ docker run udemy-crawler
+```
+
+You need to provide Udemy course URL, so it will be like:
+
+```
+$ docker run udemy-crawler https://www.udemy.com/success-life/
+```
+
 # Usage
 
 ## Command-line
