@@ -16,6 +16,12 @@ or if you want to import in a project.
 $ npm i udemy-crawler
 ```
 
+You also will probably have to install rollup globally to run tests and to build the app (npm run build):
+
+```
+npm install --global rollup
+```
+
 ## via Docker
 
 You can make a Docker build for the udemy crawler CLI.
@@ -77,9 +83,9 @@ resourceful for everybody, keeping this fact in mind.",
 ## API
 
 ```js
-import UdemyCrawler from 'udemy-crawler';
+import UdemyCrawler from 'udemy-crawler'
 
-const crawler = new UdemyCrawler();
+const crawler = new UdemyCrawler()
 ```
 
 ### Method: `execute(url[, callback])`
@@ -88,9 +94,8 @@ const crawler = new UdemyCrawler();
 
 - **url: String** - The udemy course URL to parse. It should start with following: `https://www.udemy.com/`. Otherwise, it will fail.
 - **callback(err, course): Function** (Optional).
-    - **err: Error** - will be `null` if no error occurred.
-    - **course: Object** - is the result course info in below format.
-
+  - **err: Error** - will be `null` if no error occurred.
+  - **course: Object** - is the result course info in below format.
 
 **course: Object** format:
 
@@ -113,7 +118,6 @@ const crawler = new UdemyCrawler();
 
 - `discount = 0` and `price = 0`: this is **FREE COURSE**.
 - `discount = 100`: this is **100% OFF** with `couponCode` value set.
-
 
 # License
 
