@@ -1,7 +1,7 @@
 {
   "name": "udemy-crawler",
-  "version": "1.1.1",
-  "description": "Crawling Udemy course data and save it into JSON format.",
+  "version": "1.1.2",
+  "description": "Crawls Udemy course data and save it into JSON format.",
   "bin": {
     "udemy-crawler": "./bin/crawler.js"
   },
