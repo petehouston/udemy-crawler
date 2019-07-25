@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/petehouston/udemy-crawler.svg?branch=master)](https://travis-ci.org/petehouston/udemy-crawler)
 
-Crawling Udemy course info and save into JSON format.
+**udemy-crawler** crawls a Udemy course data by a given url, scrapes it and provides in JSON back.
 
 # Installation
 
@@ -20,6 +20,12 @@ You also will probably have to install rollup globally to run tests and to build
 
 ```
 npm install --global rollup
+```
+
+Then, to run tests:
+
+```
+npm test
 ```
 
 ## via Docker
@@ -48,36 +54,66 @@ $ udemy-crawler [URL]
 Example and sample output
 
 ```bash
-$ udemy-crawler https://www.udemy.com/success-life/
+$ udemy-crawler https://www.udemy.com/code-grow-rich-earn-more-as-an-entrepreneur-or-developer/
 
-Parsing Url: https://www.udemy.com/success-life/
+Parsing Url: https://www.udemy.com/code-grow-rich-earn-more-as-an-entrepreneur-or-developer/
+
+And getting JSON back:
 {
-    "id": "1837672",
-    "title": "Become Successful. Personal Development - Complete Blueprint",
-    "headline": "How to be successful: Personal success, Mindset, Productivity, Surrounding, Life, Habits, Success & achievement",
-    "image": "https://udemy-images.udemy.com/course/750x422/1837672_4c92_4.jpg",
-    "description": "<p><strong>How to be successful. Achieve your goal and get success. Learn how to be successful. Create better habits. Be a successful person. Focus on personal development</strong></p><p><strong>Opportunities, mindset and hardwork lead to power, influence, attention, MONEY and relationships</strong></p><p><br></p><p><em>You Only Have One Life:</em> So, to have a breakthrough in <strong>YOUR</strong> happiness and emotional well being... All you have to Do is <strong>CHANGE YOUR BELIEF SYSTEM/THOUGHT PROCESS</strong></p><p>You don't know where to start? don't
-know what you want? Will it reach him or not? Have a fear of the future !</p><p>So, Welcome to the best course on <strong>Strategies for Success </strong>&amp; <strong>Overcome Toxic Beliefs</strong></p><p><br></p><p>The Motivation is always has that strong positive impulse but sometimes it is not enough</p><p>because some people says, \"this rich man is a lucky man\" or \"he born in a wealthy family\" or \"he has friends who help him\".. and all those unreal reasons that justify your lack of success, you say it because you can't do it like him</p><p>and this is not your fault because all what you do on every day basis and people you surround yourself with have a huge impact on your level of success.</p><p><br></p><p>However, there are certain things successful people do on every day basis that most people are simply not willing to do OR they have no idea that they should do them. Your life is ending one minute at a time and there is no point of reinventing the wheel. In this course you will learn proven strategies used by top performers and I will show you how you can implement them to be what you want and be successful</p><p><br></p><p>Make magic happen with <strong>the Law of Attraction</strong>!</p><p>This program is the result of over 30 years studying mind science and consciousness-expanding practices. You will learn how to finally identify the dis-empowering subconscious beliefs that are running your current life by default and start designing your exciting life; the life you dream of having where anything is possible. Join me
-on this journey of exploration and manifestation by hitting the \"Enroll Now button\" above to start learning now and I’ll see you in the course.</p>",
-    "audiences": [
-        "People with a curious and open mind who desire to achieve.",
-        "Anyone who wants to create positive changes in life.",
-        "Anyone who wants to start seeing results in his life",
-        "People who are committed to improving their habits",
-        "This course is for anyone wanting to live a life full of joy and wonder and want to live each day with passion",
-        "Anyone who wants to improve their lives and live a better life",
-        "Universe has a purpose for everybody. The one reading you, yes you are attracted here for a purpose. So yes, anybody reading this can take this course. It is developed that simple to be
-resourceful for everybody, keeping this fact in mind.",
-        "Any student who wants to learn how to be more successful in life"
-    ],
+    "id": "481696",
+    "title": "Code & Grow Rich: Earn More As An Entrepreneur Or Developer",
+    "headline": "Make More Money as an Entrepreneur, Web & Mobile App Developer, Software Engineer, Startup Junkie, or Programmer",
+    "date": "Last updated 2/2016",
+    "image": "https://i.udemycdn.com/course/750x422/481696_756c_3.jpg",
+    "description": "<p><strong>----------------------------------------------------------------------------------------------------------------<br><em><br>*Feb 16th 2016*</em></strong></p><ul><li><strong>Over 3100 student enrollments within the first four days of course launch!</strong></li><li><strong>Now with over 57 hours of video content and 500+ pages of curated resources!</strong></li><li><strong>11 discrete income producing trajectories!</strong></li><li><strong>Over 100 real-world mock interactions (phone calls and email templates)!  </strong></li></ul><p><strong><br>Code &amp; Grow Rich is a comprehensive course that empowers both non-technical entrepreneurs and software developers with the skills to succeed in today\'s techno-centric business world. </strong><strong>-----------------------------------------------------------------------------------------------------------------</strong></p> (...)",
+    audiences: [
+                'entrepreneurs',
+                'mobile app developers ',
+                'web developers',
+                'startup founders ',
+                'non-technical individuals that want a blue-print for profiting through technology',
+                'software engineers ',
+                'computer science students ',
+                'video game developers ',
+                'non-technical co-founders who want to scale a startup',
+                'software developers ',
+                'computer programmers ',
+                'software architects ',
+                'intrapreneurs that want to learn how to better weave technology into their current role ',
+                'web designers',
+                'career switchers who are looking to explore how technology and entrepreneurship can be used to replace their 9-5 jobs',
+                'marketers ',
+                'growth hackers ',
+                'traditional or online teachers / instructors ',
+                'engineers and software developers ',
+                'user experience designers (UX designers) & user interface designers (UI designers) ',
+                'information technology professionals and managers ',
+                'database administrators and database architects ',
+                'information security analysts ',
+                'hackers ',
+                'computer systems analysts ',
+                'website content developers and website conversion experts ',
+                'content management system (CMS) developers and enterprise resource planning (ERP) experts  ',
+                'data scrapers ',
+                'data miners ',
+                'data analysts ',
+                'cyber-security experts '
+            ],
     "topics": [
-        "Personal Development",
-        "Personal Transformation"
-    ],
-    "couponCode": "",
-    "price": 179.99,
-    "discount": 0
-}
+                'Development',
+                'Web Development',
+                'Entrepreneurship Fundamentals'
+            ],
+    "couponCode": "SUMMERSALE",
+    "price": 10.99,
+    "fullPrice": 199.99,
+    "discount": 94,
+    "curriculum":
+    {
+        "contents": [ [Object], [Object], [Object], [Object], [Object] ],
+        "courseLength": '02:36:13'
+    },
+    "authors": [ 'Giles McMullen-Klein' ]
 ```
 
 ## API
@@ -92,7 +128,7 @@ const crawler = new UdemyCrawler()
 
 #### Arguments
 
-- **url: String** - The udemy course URL to parse. It should start with following: `https://www.udemy.com/`. Otherwise, it will fail.
+- **url: String** - The udemy course URL to parse. It should start with following: `https://www.udemy.com/` and ends optionally with `?couponCode=CODE`. The crawling won't start without the course url.
 - **callback(err, course): Function** (Optional).
   - **err: Error** - will be `null` if no error occurred.
   - **course: Object** - is the result course info in below format.
@@ -104,13 +140,19 @@ const crawler = new UdemyCrawler()
     "id": String,
     "title": String,
     "headline": String,
+    "date": String, // last date of update of the course
     "image": String, // the 750x422 size
     "description": String, // the HTML format
-    "audiences": String Array,
-    "topics": String Array,
     "couponCode": String, // default to ""
-    "price": Number, // floating point number
-    "discount": Number, // default 0. Max value is 100.
+    "price": Number, // current price (floating point number)
+    "fullPrice": Number, // list price (floating point number)
+    "discount": Number, // course discount in percent: default 0. Max value is 100.
+    "audiences": String[], // target audiences
+    "curriculum": Object[], // table of contents aka list of lectures
+    "topics": String[], // course keywords aka topics
+    "authors": String, // author of the course
+    "discountExpiration": Date // date of the discount's expiration
+
 }
 ```
 
