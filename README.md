@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/petehouston/udemy-crawler.svg?branch=master)](https://travis-ci.org/petehouston/udemy-crawler)
 
-**udemy-crawler** crawls a Udemy course data by a given url, scrapes it and provides in JSON back.
+**udemy-crawler** crawls a Udemy course data by a given url, scrapes it and provides JSON back.
 
 # Installation
 
@@ -10,13 +10,13 @@
 $ npm i -g udemy-crawler
 ```
 
-or if you want to import in a project.
+or if you want to import in a project (install it locally):
 
 ```
-$ npm i udemy-crawler
+$ npm i udemy-crawler -S
 ```
 
-You also will probably have to install rollup globally to run tests and to build the app (npm run build):
+In case you'll change `./src/crawler.es.js`, you will also need to install rollup (globally), to run tests and to build/compile the app (`npm run build`; see package.json for other scripts):
 
 ```
 npm install --global rollup
