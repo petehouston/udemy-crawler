@@ -1,11 +1,13 @@
 'use strict';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+function _interopDefault$1(ex) {
+    return ex && typeof ex === 'object' && 'default' in ex ? ex['default'] : ex;
+}
 
-var cheerio = _interopDefault(require('cheerio'));
-var request = _interopDefault(require('sync-request'));
-var normalizeUrl = _interopDefault(require('normalize-url'));
-var url = require('url');
+const cheerio = _interopDefault$1(require('cheerio'));
+const request = _interopDefault$1(require('sync-request'));
+const normalizeUrl = _interopDefault$1(require('normalize-url'));
+const url = require('url');
 
 class UdemyCrawler {
     constructor(config) {
@@ -95,6 +97,11 @@ class UdemyCrawler {
             .trim();
         const metaJson = JSON.parse($('#schema_markup script').html());
         Course.image = metaJson[0].image;
+        Course.date = $(
+            '.main-content .container [data-purpose="last-update-date"] span'
+        )
+            .text()
+            .trim();
 
         /*
             Also consider other opened Udemy entry points:
@@ -148,21 +155,26 @@ class UdemyCrawler {
         // description, audiences, topics
         Course.description = jsonData.description.data.description;
         Course.audiences = jsonData.description.data.target_audiences;
+        Course.curriculum = {};
+        Course.curriculum.contents = JSON.parse(
+            JSON.stringify(jsonData.curriculum.data.sections)
+        );
+        Course.curriculum.courseLength =
+            jsonData.curriculum.data.estimated_content_length_text;
         Course.topics = jsonData.topic_menu.menu_data.map(
             m => m.title || m.display_name
         );
 
         // price, discount
-        Course.price = jsonData.purchase.data.pricing_result.price.amount
-            ? jsonData.purchase.data.pricing_result.price.amount
-            : jsonData.purchase.data.list_price.amount;
-        if (
-            jsonData.purchase.data.pricing_result.has_discount_saving &&
-            jsonData.purchase.data.pricing_result
-                .discount_percent_for_display === 100
-        ) {
-            Course.discount = 100;
-        } else {
+        Course.price = jsonData.purchase.data.pricing_result.price.amount;
+        Course.fullPrice = jsonData.purchase.data.list_price.amount;
+
+        Course.authors =
+            jsonData.instructor_bio.data.instructors_info[0].display_name;
+
+        // Course.image = jsonData.introduction_asset.images.image_480x270;
+
+        if (jsonData.purchase.data.pricing_result.has_discount_saving) {
             Course.discount =
                 jsonData.purchase.data.pricing_result.discount_percent_for_display;
             Course.discountExpiration =
