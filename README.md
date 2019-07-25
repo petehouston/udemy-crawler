@@ -166,18 +166,18 @@ const udemyCourseContents = await scrapeUdemyCourseToJSON('your_url')
     "id": String,
     "title": String,
     "headline": String,
-    "date": String, // last date of update of the course
-    "image": String, // the 750x422 size
-    "description": String, // the HTML format
-    "couponCode": String, // default to ""
-    "price": Number, // current price (floating point number)
-    "fullPrice": Number, // list price (floating point number)
-    "discount": Number, // course discount in percent: default 0. Max value is 100.
-    "audiences": String[], // target audiences
-    "curriculum": Object[], // table of contents aka list of lectures
-    "topics": String[], // course keywords aka topics
-    "authors": String, // author of the course
-    "discountExpiration": Date // date of the discount's expiration
+    "date": String, /* last date of update of the course */
+    "image": String, /* the 750x422 size */
+    "description": String, /* the HTML format */
+    "couponCode": String, /* defaults to "" */
+    "price": Number, /* current price (floating point number) */
+    "fullPrice": Number, /* list price (floating point number) */
+    "discount": Number, /* course discount in percent: default 0. Max value is 100. */
+    "audiences": String[], /* target audiences */
+    "curriculum": Object[], /* table of contents aka list of lectures */
+    "topics": String[], /* course keywords aka topics */
+    "authors": String, /* author of the course */
+    "discountExpiration": Date /* date of the discount's expiration */
 
 }
 ```
