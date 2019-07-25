@@ -119,9 +119,35 @@ And getting JSON back:
 ## API
 
 ```js
+// import the package
 import UdemyCrawler from 'udemy-crawler'
+```
 
-const crawler = new UdemyCrawler()
+```js
+// apply options
+const crawler = new UdemyCrawler({
+  headers: {
+    'User-Agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+    'upgrade-insecure-requests': 1
+  }
+})
+
+// execute crawler
+const scrapeUdemyCourseToJSON = async url => {
+  return crawler.execute(url, (err, course) => {
+    if (err) {
+      return console.error(err.message)
+    }
+    // console.log('Finishing scraping...', course)
+    return course
+  })
+}
+```
+
+```js
+// somewhere else
+const udemyCourseContents = await scrapeUdemyCourseToJSON('your_url')
 ```
 
 ### Method: `execute(url[, callback])`
@@ -163,4 +189,6 @@ const crawler = new UdemyCrawler()
 
 # License
 
-[MIT](LICENSE.md) @ 2018 by [Pete Houston](https://petehouston.com).
+[MIT](LICENSE.md)
+2018 by [Pete Houston](https://petehouston.com)
+2019 by [D. Galakhov](http://galakhov.de)
