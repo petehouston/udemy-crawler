@@ -161,7 +161,7 @@ const udemyCourseContents = await scrapeUdemyCourseToJSON('your_url')
 
 **course: Object** format:
 
-```json
+```js
 {
     "id": String,
     "title": String,
@@ -178,7 +178,6 @@ const udemyCourseContents = await scrapeUdemyCourseToJSON('your_url')
     "topics": String[], /* course keywords aka topics */
     "authors": String, /* author of the course */
     "discountExpiration": Date /* date of the discount's expiration */
-
 }
 ```
 
