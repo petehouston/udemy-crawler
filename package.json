@@ -1,7 +1,7 @@
 {
   "name": "udemy-crawler",
-  "version": "1.1.1",
-  "description": "Crawling Udemy course info and save into JSON format.",
+  "version": "1.2.0",
+  "description": "Crawls Udemy course data and save it into JSON format.",
   "bin": {
     "udemy-crawler": "./bin/crawler.js"
   },
@@ -10,8 +10,8 @@
     "prebuild": "eslint src",
     "build": "rollup -c",
     "pretest": "rollup -c",
-    "test": "cross-env NODE_ENV=test mocha --require babel-core/register",
-    "test:cover": "npm run build && cross-env NODE_ENV=test nyc mocha --require babel-core/register",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register",
+    "test:cover": "npm run build && cross-env NODE_ENV=test nyc mocha --require @babel/register",
     "cover": "cross-env NODE_ENV=test nyc report --reporter=text",
     "watch": "rollup -c -w",
     "prepublish": "npm test"
@@ -25,11 +25,12 @@
     "exclude": [
       "**/*.spec.js",
       "build"
-    ]
+    ],
+    "chache": false
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/petehouston/udemy-crawler.git"
+    "url": "git+https://github.com/galakhov/udemy-crawler.git"
   },
   "keywords": [
     "udemy",
@@ -37,32 +38,42 @@
     "udemy-crawler",
     "crawl",
     "crawling",
-    "data-crawling"
+    "data-crawling",
+    "web-scraping",
+    "web-scraper",
+    "udemy-scraper",
+    "udemy-parser",
+    "courses-parser"
   ],
   "author": "Pete Houston <contact@petehouston.com>",
+  "contributors": [
+    {
+      "name": "D. Galakhov <galakhov.de>"
+    }
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/petehouston/udemy-crawler/issues"
+    "url": "https://github.com/galakhov/udemy-crawler/issues"
   },
-  "homepage": "https://github.com/petehouston/udemy-crawler#readme",
+  "homepage": "https://github.com/galakhov/udemy-crawler#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "normalize-url": "^3.3.0",
-    "npm": "^6.4.1",
     "sync-request": "^6.0.0"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^5.0.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "chai": "^4.1.2",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "eslint": "^5.6.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.2.0",
-    "nyc": "^13.0.1",
+    "mocha": "^6.2.0",
+    "npm": "^6.10.2",
+    "nyc": "^14.1.1",
     "rollup": "^0.66.2"
   }
 }
